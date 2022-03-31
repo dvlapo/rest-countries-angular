@@ -1,0 +1,10 @@
+<div class="search-field">
+  <ion-icon name="search-outline"></ion-icon>
+  <input
+    type="text"
+    placeholder="Search for a country..."
+    aria-label="Search for a country..."
+    [(ngModel)]="query"
+    (ngModelChange)="onChange(query)"
+  />
+</div>

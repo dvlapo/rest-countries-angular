@@ -1,0 +1,18 @@
+<div class="filter-container">
+  <button
+    class="filter"
+    aria-expanded="false"
+    (click)="toggleOpenFilterOptions()"
+  >
+    Filter by Region
+    <ion-icon name="chevron-up-outline" *ngIf="openFilterOptions"></ion-icon>
+    <ion-icon name="chevron-down-outline" *ngIf="!openFilterOptions"></ion-icon>
+  </button>
+  <div class="options" *ngIf="openFilterOptions">
+    <ul class="regions-list" *ngFor="let region of regionsList">
+      <li role="button" (click)="onClickToFilter(region.name)">
+        {{ region.name }}
+      </li>
+    </ul>
+  </div>
+</div>

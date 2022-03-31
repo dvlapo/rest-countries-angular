@@ -1,0 +1,20 @@
+<main>
+  <div class="flex">
+    <app-search (search)="search($event)"></app-search>
+    <app-filter (filter)="filterByRegion($event)"></app-filter>
+  </div>
+
+  <div class="cards-grid" *ngIf="!loading">
+    <app-country-card
+      *ngFor="let country of allCountries"
+      [flag]="country.flags.svg"
+      [countryName]="country.name"
+      [population]="country.population"
+      [region]="country.region"
+      [capital]="country.capital"
+    ></app-country-card>
+  </div>
+  <div *ngIf="loading" class="loading">
+    Doing a quick sprint around world... &#9992;
+  </div>
+</main>

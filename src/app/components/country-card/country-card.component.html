@@ -1,0 +1,22 @@
+<div class="country-card">
+  <a routerLink="/details/{{ countryName }}">
+    <div class="flag">
+      <img src="{{ flag }}" alt="" />
+    </div>
+
+    <article>
+      <h2>{{ countryName }}</h2>
+      <ul>
+        <li>
+          Population: <span> {{ population }} </span>
+        </li>
+        <li>
+          Region: <span> {{ region }} </span>
+        </li>
+        <li>
+          Capital: <span> {{ capital }} </span>
+        </li>
+      </ul>
+    </article>
+  </a>
+</div>

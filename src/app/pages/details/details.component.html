@@ -1,0 +1,59 @@
+<div class="container">
+  <button (click)="goBack()" class="back-btn">
+    <ion-icon name="arrow-back-sharp"></ion-icon> back
+  </button>
+  <div class="flex">
+    <div class="flag-holder">
+      <img [src]="flagSrc" alt="" />
+    </div>
+    <article>
+      <h1>{{ countryName }}</h1>
+      <div class="flex-list">
+        <ul>
+          <li class="list">
+            Native name:
+            <span *ngFor="let native of nativeNames">{{ native.common }}</span>
+          </li>
+          <li>
+            Population:
+            <span>{{ population }}</span>
+          </li>
+          <li>
+            Region: <span>{{ region }}</span>
+          </li>
+          <li>
+            Sub Region: <span>{{ subRegion }}</span>
+          </li>
+          <li>
+            Capital: <span>{{ capital }}</span>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            Top Level Domain: <span>{{ tld }}</span>
+          </li>
+          <li class="list">
+            Currencies:
+            <span *ngFor="let curr of currencies">{{ curr.name }}</span>
+          </li>
+          <li class="list">
+            Languages:
+            <span *ngFor="let language of languages">{{ language }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="flex-links">
+        <p>Border Countries:</p>
+        <div class="links" *ngIf="borderCountriesNames">
+          <a
+            routerLink="/details/{{ border }}"
+            *ngFor="let border of borderCountriesNames"
+          >
+            {{ border }}
+          </a>
+        </div>
+        <div *ngIf="!borders">Nil.</div>
+      </div>
+    </article>
+  </div>
+</div>
