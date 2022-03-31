@@ -1,6 +1,6 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CountriesService } from 'src/app/services/countries.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -26,13 +26,25 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private countriesService: CountriesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.name = this.route.snapshot.params['country'];
-
     this.getCountryDetails();
+  }
+
+  ngDoCheck() {
+    if (this.borders !== []) {
+      this.getCountryBorderNames();
+      this.borders = [];
+    }
+  }
+
+  refresh() {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
   }
 
   getCountryDetails() {
@@ -62,16 +74,8 @@ export class DetailsComponent implements OnInit {
         .subscribe((borderCountryNames) => {
           let countryName = borderCountryNames[0].name.common;
           this.borderCountriesNames.push(countryName);
-          console.log(this.borderCountriesNames);
         });
     });
-  }
-
-  ngDoCheck() {
-    if (this.borders !== []) {
-      this.getCountryBorderNames();
-      this.borders = [];
-    }
   }
 
   goBack() {

@@ -48,6 +48,7 @@
           <a
             routerLink="/details/{{ border }}"
             *ngFor="let border of borderCountriesNames"
+            (click)="refresh()"
           >
             {{ border }}
           </a>
